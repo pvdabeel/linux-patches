@@ -1,6 +1,7 @@
---- linux-4.14.12-gentoo/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c	2017-11-12 19:46:13.000000000 +0100
-+++ linux-4.14.12-gentoo-patched/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c	2018-01-06 16:12:03.278878692 +0100
-@@ -714,8 +714,8 @@
+diff -urN linux-4.17.0-gentoo.orig/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c linux-4.17.0-gentoo/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c
+--- linux-4.17.0-gentoo.orig/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c	2018-06-03 23:15:21.000000000 +0200
++++ linux-4.17.0-gentoo/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c	2018-06-07 18:23:29.497380130 +0200
+@@ -681,8 +681,8 @@
  	fb_depth = 24;
  
  	/* XXX As shouldn't these be as well. */
@@ -11,29 +12,29 @@
  
  	fb_pitch = fb_width * fb_bpp / 8;
  	fb_size = fb_pitch * fb_height;
-@@ -734,8 +734,8 @@
+@@ -701,8 +701,8 @@
  	INIT_DELAYED_WORK(&par->local_work, &vmw_fb_dirty_flush);
  	par->vmw_priv = vmw_priv;
  	par->vmalloc = NULL;
 -	par->max_width = fb_width;
 -	par->max_height = fb_height;
-+	par->max_width = 2880;//fb_width;
++	par->max_width = 2800;//fb_width;
 +	par->max_height = 1800;//fb_height;
  
- 	drm_modeset_lock_all(vmw_priv->dev);
  	ret = vmw_kms_fbdev_init_data(vmw_priv, 0, par->max_width,
-@@ -746,8 +746,8 @@
+ 				      par->max_height, &par->con,
+@@ -710,8 +710,8 @@
+ 	if (ret)
  		goto err_kms;
- 	}
  
 -	info->var.xres = init_mode->hdisplay;
 -	info->var.yres = init_mode->vdisplay;
 +	info->var.xres = 2880;//init_mode->hdisplay;
 +	info->var.yres = 1800;//init_mode->vdisplay;
- 	drm_modeset_unlock_all(vmw_priv->dev);
  
  	/*
-@@ -791,14 +791,14 @@
+ 	 * Create buffers and alloc memory
+@@ -754,14 +754,14 @@
  	info->var.transp.offset = 0;
  	info->var.transp.length = 0;
  
