@@ -7,8 +7,8 @@ diff -urN linux-4.17.0-gentoo.orig/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c linux-4.17
  	/* XXX As shouldn't these be as well. */
 -	fb_width = min(vmw_priv->fb_max_width, (unsigned)2048);
 -	fb_height = min(vmw_priv->fb_max_height, (unsigned)2048);
-+	fb_width = 3200;//min(vmw_priv->fb_max_width, (unsigned)2048);
-+	fb_height = 1800;//min(vmw_priv->fb_max_height, (unsigned)2048);
++	fb_width = 5120;//min(vmw_priv->fb_max_width, (unsigned)2048);
++	fb_height = 2880;//min(vmw_priv->fb_max_height, (unsigned)2048);
  
  	fb_pitch = fb_width * fb_bpp / 8;
  	fb_size = fb_pitch * fb_height;
@@ -18,8 +18,8 @@ diff -urN linux-4.17.0-gentoo.orig/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c linux-4.17
  	par->vmalloc = NULL;
 -	par->max_width = fb_width;
 -	par->max_height = fb_height;
-+	par->max_width = 3200;//fb_width;
-+	par->max_height = 1800;//fb_height;
++	par->max_width = 5120;//fb_width;
++	par->max_height = 2880;//fb_height;
  
  	ret = vmw_kms_fbdev_init_data(vmw_priv, 0, par->max_width,
  				      par->max_height, &par->con,
@@ -29,8 +29,8 @@ diff -urN linux-4.17.0-gentoo.orig/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c linux-4.17
  
 -	info->var.xres = init_mode->hdisplay;
 -	info->var.yres = init_mode->vdisplay;
-+	info->var.xres = 3200;//init_mode->hdisplay;
-+	info->var.yres = 1800;//init_mode->vdisplay;
++	info->var.xres = 5120;//init_mode->hdisplay;
++	info->var.yres = 2880;//init_mode->vdisplay;
  
  	/*
  	 * Create buffers and alloc memory
@@ -40,16 +40,16 @@ diff -urN linux-4.17.0-gentoo.orig/drivers/gpu/drm/vmwgfx/vmwgfx_fb.c linux-4.17
  
 -	info->var.xres_virtual = fb_width;
 -	info->var.yres_virtual = fb_height;
-+	info->var.xres_virtual = 3200;//fb_width;
-+	info->var.yres_virtual = 1800;//fb_height;
++	info->var.xres_virtual = 5120;//fb_width;
++	info->var.yres_virtual = 2880;//fb_height;
  	info->var.bits_per_pixel = fb_bpp;
  	info->var.xoffset = 0;
  	info->var.yoffset = 0;
  	info->var.activate = FB_ACTIVATE_NOW;
 -	info->var.height = -1;
 -	info->var.width = -1;
-+	info->var.height = 3200;
-+	info->var.width = 1800;
++	info->var.height = 5120;
++	info->var.width = 2880;
  
  	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
  	info->apertures = alloc_apertures(1);
